@@ -24,7 +24,6 @@
         content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
     <meta property="og:image"
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
@@ -33,7 +32,6 @@
         content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
     <meta property="twitter:image"
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="120x120" href="{{asset('volt/assets/img/favicon/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('volt/assets/img/favicon/favicon-32x32.png')}}">
@@ -43,7 +41,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <!-- Sweet Alert -->
     <link type="text/css" href="{{asset('volt/assets/vendor/sweetalert2/dist/sweetalert2.min.css')}}" rel="stylesheet">
 

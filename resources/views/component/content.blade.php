@@ -16,7 +16,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="newTaskForm" action="" method="POST">
+                <form id="newTaskForm" action="{{route('tasks.store')}}" method="POST">
                     @csrf
                     <div class="form-group mb-3">
                         <label for="location" class="form-label">Lokasi</label>
