@@ -1,14 +1,19 @@
 <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
     <div class="sidebar-inner px-4 pt-3">
+   
+
         @guest
-           <li class="nav-item">
-                <a class="nav-link d-flex align-items-center">
-                    <span class="sidebar-icon">
-                        <img src="{{asset('volt/assets/img/brand/light.svg')}}" height="20" width="20" alt="Volt Logo">
-                    </span>
-                    <span class="mt-1 ms-1 sidebar-text">FISH APP Overview</span>
-                </a>
-            </li>
+<li class="nav-item">
+    <div class="nav-link d-flex align-items-center" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: ##000080;">
+        <span class="sidebar-icon">
+            <i class="fas fa-fish" style="font-size:20px;"></i>
+        </span>
+        <span class="mt-1 ms-1 sidebar-text" style="font-weight:bold; font-size:15px;">Peta Persebaran Ikan</span>
+    </div>
+</li>
+
+
+
             <li class="nav-item">
                 <a href="{{route('map')}}" class="nav-link d-flex justify-content-between">
                     <span>
@@ -20,7 +25,7 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </span>
-                        <span class="sidebar-text">Map</span>
+                        <span class="sidebar-text">Peta</span>
                     </span>
                 </a>
             </li>
@@ -39,14 +44,16 @@
 
             <!-- Links only shown when authenticated -->
             @auth
-            <li class="nav-item">
-                <a class="nav-link d-flex align-items-center">
-                    <span class="sidebar-icon">
-                        <img src="{{asset('volt/assets/img/brand/light.svg')}}" height="20" width="20" alt="Volt Logo">
-                    </span>
-                    <span class="mt-1 ms-1 sidebar-text">FISH APP Overview</span>
-                </a>
-            </li>
+<li class="nav-item">
+    <div class="nav-link d-flex align-items-center" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: ##000080;">
+        <span class="sidebar-icon">
+            <i class="fas fa-fish" style="font-size:20px;"></i>
+        </span>
+        <span class="mt-1 ms-1 sidebar-text" style="font-weight:bold; font-size:15px;">Peta Persebaran Ikan</span>
+    </div>
+</li>
+
+
             <li class="nav-item ">
                 <a href="{{route('dashboard')}}" class="nav-link">
                     <span class="sidebar-icon">
@@ -56,7 +63,7 @@
                             <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                         </svg>
                     </span>
-                    <span class="sidebar-text">Dashboard</span>
+                    <span class="sidebar-text">Input Lokasi</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -70,7 +77,7 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </span>
-                        <span class="sidebar-text">Map</span>
+                        <span class="sidebar-text">Peta</span>
                     </span>
                 </a>
             </li>
@@ -91,4 +98,5 @@
             @endauth
         </ul>
     </div>
+    
 </nav>

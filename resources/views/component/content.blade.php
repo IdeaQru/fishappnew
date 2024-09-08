@@ -5,14 +5,14 @@
 @auth
 <button type="button" class="btn btn-gray-800 d-inline-flex align-items-center" id="openModalButton"
     data-bs-toggle="modal" data-bs-target="#newTaskModal">
-    New Task
+   INPUT
 </button>
 <!-- Modal -->
 <div class="modal fade" id="newTaskModal" tabindex="-1" aria-labelledby="newTaskModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newTaskModalLabel">Add New Task</h5>
+                <h5 class="modal-title" id="newTaskModalLabel">Tambahkan Lokasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -23,33 +23,34 @@
                         <input type="text" class="form-control" id="location" name="location" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="longitude" class="form-label">Longitude</label>
+                        <label for="longitude" class="form-label">Latitude</label>
                         <input type="text" class="form-control" id="longitude" name="longitude" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="latitude" class="form-label">Latitude</label>
+                        <label for="latitude" class="form-label">Longitude</label>
                         <input type="text" class="form-control" id="latitude" name="latitude" required>
                     </div>
                     <div class="form-group mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-control" id="status" name="status" required>
-                            <option value="">Select Status</option>
+                            <option value="">Pilih Status</option>
                             <option value="potensial">Potensial</option>
+                            <option value="prediksiberpotensi">Prediksi Berpotensi</option>
                             <option value="kurangpotensial">Kurang Potensial</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="release_date" class="form-label">Release Date</label>
+                        <label for="release_date" class="form-label">Tanggal Rilis</label>
                         <input type="date" class="form-control" id="release_date" name="release_date" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                        <label for="expiry_date" class="form-label">Tanggal Expired </label>
                         <input type="date" class="form-control" id="expiry_date" name="expiry_date" required>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Task</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

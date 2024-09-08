@@ -21,13 +21,13 @@
             <div class="col-12 d-flex align-items-center justify-content-center">
                 <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                     <div class="text-center text-md-center mb-4 mt-md-0">
-                        <h1 class="mb-0 h3">Sign in to Fish APP</h1>
+                        <h1 class="mb-0 h3">Login Peta Persebaran Ikan</h1>
                     </div>
                     <form action="{{route('login.process')}}" class="mt-4" method="POST">
                         <!-- Form -->
                         @csrf
                         <div class="form-group mb-4">
-                            <label for="name">Your name</label>
+                            <label for="name">Nama</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1">
                                     <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <!-- Form -->
                             <div class="form-group mb-4">
-                                <label for="password">Your Password</label>
+                                <label for="password"> Password</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon2">
                                         <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
@@ -72,7 +72,7 @@
                                 {{ $errors->first('loginError') }}
                             </div>
                             @endif
-                            <button type="submit" class="btn btn-gray-800">Sign in</button>
+                            <button type="submit" class="btn btn-gray-800">Masuk</button>
                         </div>
                     </form>
         

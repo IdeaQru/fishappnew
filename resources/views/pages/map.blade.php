@@ -47,7 +47,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Simple Map</div>
+                <div class="card-header">Peta Persebaran Ikan</div>
                 <div class="card-body">
                     <div id="map"></div>
                 </div>
@@ -92,80 +92,88 @@
 
     const baseLayers = {
         'OpenStreetMap': osm,
-        'Stadia Dark': Stadia_Dark,
+        // 'Stadia Dark': Stadia_Dark,
         'Esri WorldStreetMap': Esri_WorldStreetMap
     };
     const layerControl = L.control.layers(baseLayers).addTo(map);
-
     var legend = L.control({ position: 'bottomleft' });
 
-    legend.onAdd = function (map) {
+legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'legend');
     div.innerHTML = `
         <h4>Location Info</h4>
         <b>Total Locations: <span id="total-locations"></span></b><br>
-        <b><i class="fa fa-circle" style="color: red;"></i> Daerah Potensial: <span id="potensial-count"></span></b><br>
-        <b><i class="fa fa-circle" style="color: green;"></i> Daerah Potensial Sedang: <span id="kurang-potensial-count"></span></b>
+        <b><i class="fa fa-circle" style="color: green;"></i> Daerah Potensial: <span id="potensial-count"></span></b><br>
+        <b><i class="fa fa-circle" style="color: yellow;"></i> Prediksi Berpotensi: <span id="prediksi-count"></span></b><br>
+        <b><i class="fa fa-circle" style="color: red;"></i> Daerah Potensial Sedang: <span id="kurang-potensial-count"></span></b>
     `;
     return div;
 };
-    legend.addTo(map);
-    // Fetch data from the server and plot circles
-    fetch('/map/data')
-        .then(response => response.json())
-        .then(data => {
-            console.log('Fetched data:', data); // Log the fetched data for debugging
+legend.addTo(map);
 
-            var totalLocations = data.length;
-            var potensialCount = data.filter(location => location.status === 'potensial').length;
-            var tidakPotensialCount = data.filter(location => location.status === 'kurangpotensial').length;
+// Fetch data from the server and plot circles
+fetch('/map/data')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Fetched data:', data); // Log the fetched data for debugging
 
-            document.getElementById('total-locations').textContent = totalLocations; // Set total locations
-            document.getElementById('potensial-count').textContent = potensialCount; // Set potensial locations
-            document.getElementById('kurang-potensial-count').textContent = tidakPotensialCount; // Set kurang potensial locations
+        var totalLocations = data.length;
+        var potensialCount = data.filter(location => location.status === 'potensial').length;
+        var prediksiCount = data.filter(location => location.status === 'prediksiberpotensi').length;
+        var tidakPotensialCount = data.filter(location => location.status === 'kurangpotensial').length;
 
-            if (Array.isArray(data) && data.length > 0) {
-                data.forEach(function (location) {
-                    if (location.latitude && location.longitude) {
-                        var lng = parseFloat(location.longitude);
-                        var lat = parseFloat(location.latitude);
-                        console.log('Adding circle at:', lng, lat); // Log the latitude and longitude
+        document.getElementById('total-locations').textContent = totalLocations; // Set total locations
+        document.getElementById('potensial-count').textContent = potensialCount; // Set potensial locations
+        document.getElementById('prediksi-count').textContent = prediksiCount; // Set prediksi locations
+        document.getElementById('kurang-potensial-count').textContent = tidakPotensialCount; // Set kurang potensial locations
 
-                        // Ensure latitude and longitude are valid
-                        if (!isNaN(lat) && !isNaN(lng)) {
-                            // Set circle color based on status
-                            var circleColor = location.status === 'potensial' ? 'red' : 'green';
+        if (Array.isArray(data) && data.length > 0) {
+            data.forEach(function (location) {
+                if (location.latitude && location.longitude) {
+                    var lng = parseFloat(location.longitude);
+                    var lat = parseFloat(location.latitude);
+                    console.log('Adding circle at:', lng, lat); // Log the latitude and longitude
 
-                            var circle = L.circle([lng, lat], {
-                                color: circleColor,
-                                fillColor: circleColor,
-                                fillOpacity: 0.5,
-                                radius: 500
-                            }).addTo(map);
-
-                            circle.bindPopup(`
-                                    <strong>Lokasi:</strong> ${location.lokasi || "No location specified"}<br>
-                                    <strong>Latitude:</strong> ${lat}<br>
-                                    <strong>Longitude:</strong> ${lng}<br>
-                                    <strong>Status:</strong> ${location.status}
-                                `);
+                    // Ensure latitude and longitude are valid
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                        // Set circle color based on status
+                        var circleColor;
+                        if (location.status === 'potensial') {
+                            circleColor = 'green';
+                        } else if (location.status === 'prediksiberpotensi') {
+                            circleColor = 'yellow';
                         } else {
-                            console.warn('Invalid latitude or longitude:', lat, lng);
+                            circleColor = 'red';
                         }
-                    } else {
-                        console.warn('Invalid location data:', location);
-                    }
-                });
-            } else {
-                console.error('No locations data available or invalid format:', data);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching locations data:', error);
-        });
 
-    // Log map object for debugging
-    console.log('Map object:', map);
+                        var circle = L.circle([lng, lat], {
+                            color: circleColor,
+                            fillColor: circleColor,
+                            fillOpacity: 0.5,
+                            radius: 500
+                        }).addTo(map);
+
+                        circle.bindPopup(`
+                            <strong>Lokasi:</strong> ${location.lokasi || "No location specified"}<br>
+                            <strong>Latitude:</strong> ${lat}<br>
+                            <strong>Longitude:</strong> ${lng}<br>
+                            <strong>Status:</strong> ${location.status}
+                        `);
+                    } else {
+                        console.warn('Invalid latitude or longitude:', lat, lng);
+                    }
+                } else {
+                    console.warn('Invalid location data:', location);
+                }
+            });
+        } else {
+            console.error('No locations data available or invalid format:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching locations data:', error);
+    });
+
 </script>
 
 @endpush

@@ -22,9 +22,15 @@ class LoggerController extends Controller
                                               ->whereYear('expiry_date', '=', $year)
                                               ->count();
 
+        $totalPrediksiBerpotensi = ExpiredLocation::where('status', 'prediksiberpotensi')
+                                    ->whereMonth('expiry_date', '=', $month)
+                                             ->whereYear('expiry_date', '=', $year)
+                                            ->count();
+
         return response()->json([
             'totalPotensial' => $totalPotensial,
             'totalKurangPotensial' => $totalKurangPotensial,
+            'totalPrediksiBerpotensi' => $totalPrediksiBerpotensi,
         ]);
     }
 }

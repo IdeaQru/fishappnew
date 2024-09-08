@@ -21,17 +21,34 @@ class PDFController extends Controller
 
         $totalPotensial = $counts['potensial'] ?? 0;
         $totalKurangPotensial = $counts['kurangpotensial'] ?? 0;
+        $totalPrediksiBerpotensi = $counts['prediksiberpotensi'] ?? 0;
 
         // Mengenerate PDF
         $pdf = \PDF::loadView('pdf.template', [
             'locations' => $locations,
             'totalPotensial' => $totalPotensial,
             'totalKurangPotensial' => $totalKurangPotensial,
+            'totalPrediksiBerpotensi' => $totalPrediksiBerpotensi,
             'month' => $month,
             'year' => $year,
         ]);
+        $months = [
+        1 => 'Januari',
+        2 => 'Februari',
+        3 => 'Maret',
+        4 => 'April',
+        5 => 'Mei',
+        6 => 'Juni',
+        7 => 'Juli',
+        8 => 'Agustus',
+        9 => 'September',
+        10 => 'Oktober',
+        11 => 'November',
+        12 => 'Desember'
+    ];
 
-        return $pdf->download("PDF_LOGGER_{$month}_{$year}.pdf");
+    $monthName = $months[(int)$month];
+        return $pdf->download("DATA_{$monthName}_{$year}.pdf");
     }
 
     protected function getData($month, $year)

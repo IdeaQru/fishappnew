@@ -14,22 +14,22 @@
             <label for="lokasi">Lokasi:</label>
             <input type="text" class="form-control" id="lokasi" name="lokasi" value="{{ $location->lokasi }}" required>
         </div>
-
-        <div class="form-group mb-3">
-            <label for="longitude">Longitude:</label>
-            <input type="text" class="form-control" id="longitude" name="longitude" value="{{ $location->longitude }}" required>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="latitude">Latitude:</label>
+   <div class="form-group mb-3">
+              <label for="longitude">Longitude:</label>
             <input type="text" class="form-control" id="latitude" name="latitude" value="{{ $location->latitude }}" required>
+        </div>
+        <div class="form-group mb-3">
+              <label for="latitude">Latitude:</label>
+
+            <input type="text" class="form-control" id="longitude" name="longitude" value="{{ $location->longitude }}" required>
         </div>
 
         <div class="form-group mb-3">
             <label for="status">Status:</label>
             <select class="form-control" id="status" name="status" required>
-                <option value="potensial" {{ $location->status == 'potensial' ? 'selected' : '' }}>Potensial</option>
-                <option value="kurang potensial" {{ $location->status == 'kurang potensial' ? 'selected' : '' }}>Kurang Potensial</option>
+            <option value="potensial" {{ $location->status == 'potensial' ? 'selected' : '' }}>Potensial</option>
+            <option value="prediksiberpotensi" {{ $location->status == 'prediksiberpotensi' ? 'selected' : '' }}>Prediksi Berpotensi</option>
+                <option value="kurangpotensial" {{ $location->status == 'kurangpotensial' ? 'selected' : '' }}>Kurang Potensial</option>
             </select>
         </div>
 

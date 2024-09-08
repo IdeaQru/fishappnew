@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Data Report - {{ $month }}/{{ $year }}</title>
+    <title>Laporan Data Persebaran Ikan - {{ $month }}/{{ $year }}</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -38,9 +38,11 @@
     </style>
 </head>
 <body>
-    <h1>Data Report for {{ date("F", mktime(0, 0, 0, $month, 1)) }} {{ $year }}</h1>
+    <h1>Laporan Data Persebaran Ikan {{ date("F", mktime(0, 0, 0, $month, 1)) }} {{ $year }}</h1>
+    <h3>Wilayah Laut Jawa</h3>
     <p>Total Lokasi Potensial: {{ $totalPotensial }}</p>
-    <p>Total Lokasi Kurang Potensial: {{ $totalKurangPotensial }}</p>
+    <p>Total Prediksi Berpotensi: {{ $totalPrediksiBerpotensi }}</p>
+    <p>Total Lokasi Potensial Sedang: {{ $totalKurangPotensial }}</p>
     <table>
         <thead>
             <tr>
@@ -57,8 +59,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $location->lokasi }}</td>
-                    <td>{{ $location->longitude }}</td>
                     <td>{{ $location->latitude }}</td>
+                    <td>{{ $location->longitude }}</td>
                     <td>{{ $location->status }}</td>
                     <td>{{ $location->expiry_date }}</td>
                 </tr>
