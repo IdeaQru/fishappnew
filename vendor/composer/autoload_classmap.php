@@ -16,6 +16,7 @@ return array(
     'App\\Http\\Controllers\\LoggerController' => $baseDir . '/app/Http/Controllers/LoggerController.php',
     'App\\Http\\Controllers\\MapController' => $baseDir . '/app/Http/Controllers/MapController.php',
     'App\\Http\\Controllers\\PDFController' => $baseDir . '/app/Http/Controllers/PDFController.php',
+    'App\\Http\\Controllers\\RegisterController' => $baseDir . '/app/Http/Controllers/RegisterController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

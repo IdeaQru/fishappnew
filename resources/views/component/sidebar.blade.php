@@ -1,18 +1,16 @@
 <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
     <div class="sidebar-inner px-4 pt-3">
-   
-
-        @guest
-<li class="nav-item">
-    <div class="nav-link d-flex align-items-center" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: ##000080;">
-        <span class="sidebar-icon">
-            <i class="fas fa-fish" style="font-size:20px;"></i>
-        </span>
-        <span class="mt-1 ms-1 sidebar-text" style="font-weight:bold; font-size:15px;">Peta Persebaran Ikan</span>
-    </div>
-</li>
-
-
+        <ul class="nav flex-column">
+        <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link d-flex align-items-center" style="border: 1px solid white; padding: 10px; border-radius: 5px; background-color: #000080;">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-fish" style="font-size:20px;"></i>
+                    </span>
+                    <span class="mt-1 ms-1 sidebar-text" style="font-weight:bold; font-size:15px;">Peta Persebaran Ikan</span>
+                </a>
+            </li>
+            @guest
+       
 
             <li class="nav-item">
                 <a href="{{route('map')}}" class="nav-link d-flex justify-content-between">
@@ -29,32 +27,31 @@
                     </span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="{{route('login')}}">
-                        <span class="sidebar-icon">
-                    <span class="sidebar-text">Login</span>
-
-                        </span>
+                    <span class="sidebar-icon">
+                        <span class="sidebar-text">Login</span>
+                    </span>
                 </a>
-
             </li>
 
-        @endguest
+            @endguest
 
-
-            <!-- Links only shown when authenticated -->
             @auth
-<li class="nav-item">
-    <div class="nav-link d-flex align-items-center" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: ##000080;">
-        <span class="sidebar-icon">
-            <i class="fas fa-fish" style="font-size:20px;"></i>
-        </span>
-        <span class="mt-1 ms-1 sidebar-text" style="font-weight:bold; font-size:15px;">Peta Persebaran Ikan</span>
-    </div>
-</li>
+            <!-- Menambahkan halo username -->
+            <li class="nav-item">
+                <div class="nav-link d-flex align-items-center" >
+                    <span class="sidebar-icon">
+                        <i class="fas fa-user" style="font-size:20px;"></i>
+                    </span>
+                    <span class="mt-1 ms-1 sidebar-text" style="font-weight:bold; font-size:15px;">
+                        Halo, {{ Auth::user()->name }}
+                    </span>
+                </div>
+            </li>
 
-
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a href="{{route('dashboard')}}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -66,6 +63,7 @@
                     <span class="sidebar-text">Input Lokasi</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="{{route('map')}}" class="nav-link d-flex justify-content-between">
                     <span>
@@ -98,5 +96,4 @@
             @endauth
         </ul>
     </div>
-    
 </nav>

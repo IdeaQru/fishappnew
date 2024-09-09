@@ -59,8 +59,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $location->lokasi }}</td>
-                    <td>{{ $location->latitude }}</td>
                     <td>{{ $location->longitude }}</td>
+                    <td>{{ $location->latitude }}</td>
                     <td>{{ $location->status }}</td>
                     <td>{{ $location->expiry_date }}</td>
                 </tr>

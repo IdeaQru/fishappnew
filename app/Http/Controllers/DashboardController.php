@@ -4,15 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Location; // Pastikan menggunakan model yang sesuai
 use Illuminate\Http\Request; // Correct spelling of Illuminate
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // Semua fungsi di controller ini memerlukan login
+    }
+
     public function index()
     {
-        $locations = Location::all(); // Retrieve all locations
+        // Sekarang Anda bisa aman mengakses Auth::user()->role tanpa takut error
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            $locations = Location::all();
+        } else {
+            $locations = Location::where('user_id', $user->id)->get();
+        }
 
         return view('pages.dashboard', compact('locations'));
     }
+
+
+
 
     public function indexAPI()
     {
@@ -45,18 +61,28 @@ class DashboardController extends Controller
             'release_date' => 'required|date',
             'expiry_date' => 'required|date|after_or_equal:release_date',
         ]);
-
-        $location = new Location();
-        $location->lokasi = $request->location;
-        $location->longitude = $request->longitude;
-        $location->latitude = $request->latitude;
-        $location->status = $request->status;
-        $location->release_date = $request->release_date;
-        $location->expiry_date = $request->expiry_date;
-        $location->save();
-
-        return redirect()->back()->with('success', 'Task has been added successfully!');
+    
+        // Ambil ID pengguna yang sedang login
+        $user_id = Auth::id();
+    
+        // Buat nama lokasi unik berdasarkan id pengguna
+        $uniqueLocationName = $request->location . '-' . ($user_id * 1000);
+    
+        // Simpan data ke tabel locations
+        Location::create([
+            'lokasi' => $uniqueLocationName, // Nama lokasi unik berdasarkan user_id
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+            'status' => $request->status,
+            'release_date' => $request->release_date,
+            'expiry_date' => $request->expiry_date,
+            'user_id' => $user_id, // Simpan ID pengguna yang sedang login
+        ]);
+    
+        return redirect()->back()->with('success', 'Data lokasi berhasil disimpan dengan nama unik!');
     }
+    
+    
 
     public function update(Request $request, $id)
     {

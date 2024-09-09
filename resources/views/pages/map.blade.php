@@ -146,11 +146,11 @@ fetch('/map/data')
                             circleColor = 'red';
                         }
 
-                        var circle = L.circle([lng, lat], {
+                        var circle = L.circle([lat, lng], {
                             color: circleColor,
                             fillColor: circleColor,
                             fillOpacity: 0.5,
-                            radius: 500
+                            radius: 200
                         }).addTo(map);
 
                         circle.bindPopup(`

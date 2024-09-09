@@ -17,20 +17,25 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required',  // Ubah dari email ke name atau username
+            'name' => 'required',  // Ubah dari email ke name
             'password' => 'required',
         ]);
-
-        if (Auth::attempt($credentials)) {
+    
+        // Cek apakah checkbox 'remember' dicentang
+        $remember = $request->has('remember');
+    
+        // Gunakan 'remember' jika dicentang
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-
+    
             return redirect()->intended('/');
         }
-
+    
         return back()->withErrors([
-            'name' => 'The provided credentials do not match our records.', // Ganti pesan error untuk name
+            'name' => 'The provided credentials do not match our records.',
         ])->onlyInput('name');
     }
+    
 
     public function logout(Request $request)
     {
@@ -40,4 +45,6 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+   
+
 }

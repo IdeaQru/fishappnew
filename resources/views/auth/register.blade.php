@@ -19,76 +19,65 @@
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">Create Account</h1>
                             </div>
-                            <form action="{{ route('register') }}" method="post" class="mt-4">
-                                @csrf
-                                <div class="form-group mb-4">
-                                    <label for="name">Name</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                        </span>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Your name" required autofocus>
-                                        @error('name')
-    <span class="invalid-feedback d-block" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="email">Your Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                        </span>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="example@company.com" required>
-                                        @error('email')
-    <span class="invalid-feedback d-block" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-@enderror
+                            <form action="{{ route('register.process') }}" class="mt-4" method="POST">
+    @csrf
+    <!-- Nama -->
+    <div class="form-group mb-4">
+        <label for="name">Nama</label>
+        <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" required>
+        @error('name')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                                    </div>
-                                </div>
+    <!-- Email -->
+    <div class="form-group mb-4">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" required>
+        @error('email')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                                <div class="form-group mb-4">
-                                    <label for="password">Your Password</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon2">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                                        </span>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required>
-                                        @error('password')
-    <span class="invalid-feedback d-block" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="password_confirmation">Confirm Password</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon2">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5 a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                                        </span>
-                                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation" required>
-                                        @error('password_confirmation')
-    <span class="invalid-feedback d-block" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-@enderror
-                                    </div>
+    <!-- Role (Opsional) -->
+    <div class="form-group mb-4">
+        <label for="role">Role</label>
+        <select name="role" class="form-control" id="role">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+        @error('role')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                                </div>
+    <!-- Password -->
+    <div class="form-group mb-4">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password" required>
+        @error('password')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-gray-800">Register</button>
-                                </div>
-                            </form>
+    <!-- Konfirmasi Password -->
+    <div class="form-group mb-4">
+        <label for="password_confirmation">Konfirmasi Password</label>
+        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+        @error('password_confirmation')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Daftar</button>
+    </div>
+</form>
+
 
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
-                                    Already have an account?
+                                    sudah punya akun ?
                                     <a href="{{ route('login') }}" class="fw-bold">Login here</a>
                                 </span>
                             </div>
